@@ -60,18 +60,13 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_json.assert_called_once()
 
     @parameterized.expand([
-        ({"license": {"key": "bsd-3-clause"}}, "bsd-3-clause", True),
-        ({"license": {"key": "bsl-1.0"}}, "bsd-3-clause", False)
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
     ])
-    def test_has_license(
-        self,
-        repo,
-        license_key,
-        expected
-    ):
+    def test_has_license(self, repo, license_key, expected):
         '''Test has license function'''
-        res = GithubOrgClient.has_license(repo, license_key)
-        self.assertEqual(res, expected)
+        has_license = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(has_license, expected)
 
 
 @parameterized_class(
