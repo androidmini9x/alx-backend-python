@@ -70,8 +70,8 @@ class TestGithubOrgClient(unittest.TestCase):
         expected
     ):
         '''Test has license function'''
-        has_license = GithubOrgClient.has_license(repo, license_key)
-        self.assertEqual(has_license, expected)
+        res = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(res, expected)
 
 
 @parameterized_class(
